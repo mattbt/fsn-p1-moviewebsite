@@ -5,4 +5,7 @@ My fav movies
 How to run it
 * Install Python 2.7
 * download the project folder on your computer
-* From cmd/terminal, navigate to the project folder and run `python entertainement_center.py`  
+* From cmd/terminal, navigate to the project folder and run `python entertainement_center.py`
+
+
+![alt tag](P1.png)
