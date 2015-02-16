@@ -1,0 +1,256 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+            background-image: url("bedge_grunge.png");
+            font-family: 'Lato', sans-serif;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+            
+        }
+        .movie_img{
+            border: #fff solid 4px;
+            border-radius: 10px;  
+        }
+
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        figcaption {
+            position:absolute;
+            top: 20px;
+            left: 0px;
+            width: 100%;   
+        }
+        .figcaptioncontent {
+            width: 220px;
+            height: 342px;
+            margin: 0 auto;
+            opacity:0;
+            background-color: red;
+            border: #fff solid 4px;
+            border-radius: 10px;
+            padding-top: 50px;
+
+            /* Fallback for web browsers that don't support RGBa */
+            background-color: rgb(0, 0, 0);
+            /* RGBa with 0.6 opacity */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+
+            -webkit-font-smoothing: antialiased;
+            -webkit-transition-delay: 0s;
+            -webkit-transition-duration: 0.2s;
+            -webkit-transition-property: all;
+            -webkit-transition-timing-function: ease-in-out;
+        }
+        .figcaptioncontent:hover {
+            opacity:1;
+            visibility: show;
+            cursor: pointer;
+        }
+        .storyline {
+            padding: 0 15px 0 15px;
+            text-align: justify;
+        }
+        .unique-nav-element {
+            width:100%;
+            height: 100%;
+            text-align:center;
+        }
+        .navbar, .navbar-header {
+            width: 100%;
+        }
+        .unique-nav-element:hover i{
+            color: red !important;
+        }
+        .star{
+            color: yellow
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.figcaptioncontent', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand unique-nav-element" href="#">My <i class="fa fa-heartbeat"></i> movies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://upload.wikimedia.org/wikipedia/en/9/9b/Original_movie_poster_for_Being_There.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="oOOghKacg40" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  8.1 / 10</h4> <p class="storyline">A simple, sheltered gardener becomes an unlikely trusted adviser to a powerful businessman and an insider in Washington politics.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Being There</h3>
+    <h5>1979</h5>
+    
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://upload.wikimedia.org/wikipedia/en/thumb/0/01/Whiplash_poster.jpg/220px-Whiplash_poster.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="7d_jQycdQGo" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  8.7 / 10</h4> <p class="storyline">A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Whiplash</h3>
+    <h5>2014</h5>
+    
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://www.impawards.com/2009/posters/phoebe_in_wonderland.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="7OCJi6_lxAQ" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  7.2 / 10</h4> <p class="storyline">Confounded by her clashes with the seemingly rule-obsessed world, a troubled young girl seeks enlightenment from her unconventional drama teacher.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Phoebe in Wonderland</h3>
+    <h5>2008</h5>
+    
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="WzV6mXIOVl4" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  8 / 10</h4> <p class="storyline">A lonely writer develops an unlikely relationship with his newly purchased operating system that's designed to meet his every need.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Her</h3>
+    <h5>2013</h5>
+    
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://upload.wikimedia.org/wikipedia/en/7/73/Hugo_Poster.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="iQNkETGfA6k" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  7.6 / 10</h4> <p class="storyline">Set in 1930s Paris, an orphan who lives in the walls of a train station is wrapped up in a mystery involving his late father and an automaton.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Hugo Cabret</h3>
+    <h5>2011</h5>
+    
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" >
+    <figure>
+        <img class="movie_img" src="http://upload.wikimedia.org/wikipedia/en/f/f6/Gravity_Poster.jpg" width="220" height="342" ></img>
+        <figcaption>
+            <div class="figcaptioncontent" data-trailer-youtube-id="OiTiKOy59o4" data-toggle="modal" data-target="#trailer">
+                <span class="icon-star"></span> <h4 class="rating">IMDB  <i class="fa fa-star star"></i>  8 / 10</h4> <p class="storyline">A medical engineer and an astronaut work together to survive after a catastrophe destroys their shuttle and leaves them adrift in orbit.</p>  <span class="btn btn-success trailer_button">Watch Trailer</span>
+            </div>
+        </figcaption>
+        
+    </figure>
+    <h3>Gravity</h3>
+    <h5>2013</h5>
+    
+</div>
+
+    </div>
+  </body>
+</html>
